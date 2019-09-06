@@ -1,0 +1,28 @@
+1、codePackage文件夹下为打好包的代码：
+	frontEnd文件夹下为前端代码包，访问端口为4200；
+	backEnd文件下下为后端代码包，访问端口为8080，可以使用"start.sh"脚本来启动。
+	
+2、sourceCode文件夹下为源码：
+	frontEnd文件夹下为前端代码；
+	backEnd文件下下为后端代码。
+
+3、db文件夹下为数据库脚本：
+	tables.sql为表结构，init-data.sql为初始化数据。
+	对应建表及用户语句如下：
+	-- 创建数据库及用户信息
+	create database cardmanage;
+	create user 'cardmanageuser'@'localhost' identified by 'password';
+	create user 'cardmanageuser'@'%' identified by 'password';
+	grant all on cardmanage.* to 'cardmanageuser'@'localhost';
+	grant all on cardmanage.* to 'cardmanageuser'@'%';
+	flush privileges;
+	-- 刷入表信息
+	source /opt/test/db/tables.sql;
+	source /opt/test/db/init-data.sql;
+	
+4、配置文件
+	1)前端配置文件
+		路径：assets/config.js
+	2)后端配置文件
+		路径：application.properties
+		

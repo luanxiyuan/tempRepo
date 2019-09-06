@@ -1,0 +1,86 @@
+<!-- 主页面 -->
+<div class="container-box" *ngIf="cardMainPage">
+    <div class="top-content">
+        <img class="card-img" alt="example" src="/assets/images/card1.jpeg" onerror="this.onerror=null;"/>
+        <nz-select class="card-select" [(ngModel)]="cardSelected" [nzSize]="size"  [ngModelOptions]="{standalone: true}" (ngModelChange)="changeCard($event)">
+            <nz-option *ngFor="let option of cardOptions" title="{{option.label}}" [nzLabel]="option.label" [nzValue]="option"></nz-option>
+        </nz-select>
+        <div class="card-number">
+            <span>{{cardNumber | CardNumPipe}}</span>
+            <span class="card-manage"><i nz-icon nzType="setting" nzTheme="outline"></i> Manage Cards</span>
+        </div>
+    </div>
+    <div> 
+        <span class="available-title">Available Limit</span>
+        <!--
+            api:https://github.com/bootsoon/ng-circle-progress
+        -->
+        <circle-progress
+        [percent]="availableProportion"
+        [maxPercent]="100"
+        [radius]="100"
+        [outerStrokeWidth]="16"
+        [innerStrokeWidth]="8"
+        [outerStrokeColor]="'#3366ff'"
+        [innerStrokeColor]="'#cce0ff'"
+        [animation]="true"
+        [animationDuration]="300"
+        [title]="availableSubtitle"
+        [showUnits]="false"
+        [showInnerStroke]="false"
+        [showSubtitle]="false"
+        [titleColor]="'#3366ff'"
+        [titleFontSize]="30"
+        ></circle-progress>
+    </div>
+    <div class="bottom-title">
+        Limit Increase
+    </div>
+    <div class="bottom-subtitle-row">
+        <span class="bottom-subtitle-first-left">Maximum Increase Amount</span>
+        <span class="bottom-subtitle-first-right">${{limit}}</span>
+    </div>
+    <div class="bottom-subtitle-row">
+        <span class="bottom-subtitle-first-left">Increase Limit To</span>
+        <span class="bottom-subtitle-second-right">
+            <nz-input-number
+            style="width: 30%;"
+            [(ngModel)]="newLimit"
+            [nzMin]="1"
+            [nzMax]="99999"
+            [nzStep]="0.01"
+            [nzFormatter]="formatterDollar"
+            [nzParser]="parserDollar"
+            ></nz-input-number>
+        </span>
+    </div>
+    <button nz-button class="submit-btn" nzType="primary" [nzSize]="size" (click)="updateCardQuota()">SUBMIT</button>
+</div>
+
+<!-- 成功返回页 -->
+<div class="container-box" *ngIf="cardSuccessPage">
+    <nz-progress class="success-icon" [nzPercent]="100" nzType="circle"></nz-progress>
+    <span class="result-msg">Request Submit Successfully!</span>
+    <div class="bottom-box">
+        <div class="bottom-subtitle-row">
+            <span class="bottom-result-left">Transaction Card</span>
+            <span class="bottom-right">{{cardNumber | CardNumPipe}}</span>
+        </div>
+        <div class="bottom-subtitle-row">
+            <span class="bottom-result-left">Increase Limit To</span>
+            <span class="bottom-right">${{newLimit}}</span>
+        </div>
+        <div class="bottom-subtitle-row">
+            <span class="bottom-result-left">Request Submit Date</span>
+            <span class="bottom-right">{{updateDate}}</span>
+        </div>
+    </div>
+    <button nz-button class="result-btn" nzType="primary" (click)="backToIndex()">Go index</button>
+</div>
+
+<!-- 失败返回页 -->
+<div class="container-box" *ngIf="cardErrorPage">
+    <nz-progress class="success-icon" [nzPercent]="100" nzStatus="exception" nzType="circle"></nz-progress>
+    <span class="result-error-msg">{{errorMsg}}</span>
+    <button nz-button class="result-btn" nzType="primary" (click)="backToIndex()">Go index</button>
+</div>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    <property name="BasePath" value="${catalina.home}/logs/cardmanage" />
+    <property name="CustomLogName" value="card-manage-custom" />
+    <property name="RootLogName" value="card-manage-root" />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CustomLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${BasePath}/${CustomLogName}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${BasePath}/${CustomLogName}.%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <!-- each file should be at most 10MB -->
+            <maxFileSize>10MB</maxFileSize>
+            <!-- keep 30 days' worth of history capped at 3GB total size -->
+            <maxHistory>30</maxHistory>
+            <!-- controls the total size of all archive files. 
+            Oldest archives are deleted asynchronously when the total size cap is exceeded.
+            the "max history" restriction is always applied first then the "total size cap" -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+        </encoder>
+        <!-- If true, events are appended at the end of an existing file. -->
+        <append>true</append>
+        <!-- Support multiple-JVM writing to the same log file -->
+        <prudent>true</prudent>
+    </appender>
+
+    <appender name="RootLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${BasePath}/${RootLogName}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${BasePath}/${RootLogName}.%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+        </encoder>
+        <append>true</append>
+        <prudent>true</prudent>
+    </appender>
+    
+
+	   <!-- additivity 设为false 则符合本logger的日志不记录到其他继承树中更高层级的logger中 -->
+		<logger name="com.awcloud" level="DEBUG" additivity="false">
+	        <appender-ref ref="CustomLogAppender" />
+	        <appender-ref ref="CONSOLE" />
+		</logger>
+	    <logger name="org.springframework.web" level="DEBUG" additivity="false"/>
+	    <logger name="com.ibatis" level="DEBUG" additivity="false"/>
+	    <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" additivity="false"/>
+	    <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" additivity="false"/>
+	    <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" additivity="false"/>
+	    <logger name="java.sql.Connection" level="DEBUG" additivity="false"/>
+	    <logger name="java.sql.Statement" level="DEBUG" additivity="false"/>
+	    <logger name="java.sql.PreparedStatement" level="DEBUG" additivity="false"/>
+	    
+        <!-- root logger ，原则记录所有日志 -->
+	    <root>
+	        <level value="DEBUG" />
+	        <appender-ref ref="RootLogAppender" />
+	        <!-- 需要时可打开 -->
+	        <appender-ref ref="CONSOLE" />
+	    </root>
+	
+</configuration>

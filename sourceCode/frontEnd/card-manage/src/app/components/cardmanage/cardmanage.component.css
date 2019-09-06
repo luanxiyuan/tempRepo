@@ -1,0 +1,97 @@
+/* 外层容器 */
+.container-box{
+    border: 1px solid #bfbfbf;
+    width: 40%;
+    margin-left: 30%;
+    padding: 30px 30px 30px 30px;
+}
+/* 主页面 begin */
+.card-img{
+    width: 120px;
+    height: 75px;
+}
+.card-select{
+    width: 70%;
+    padding-left: 10px;
+    position: relative;
+    top: -18px;
+}
+.card-number{
+    position: relative;
+    left: 133px;
+    top: -25px;
+    width: 70%;
+}
+.card-manage{
+    float: right;
+    margin-right: 20px;
+}
+.available-title{
+    position: relative;
+    top: -151px;
+    left: 170px;
+    font-size: 17px;
+}
+.bottom-title{
+    font-size: 25px;
+    color: #c1bec1;
+    padding-left: 35px;
+}
+.bottom-subtitle-first-left{
+    color: #c1bec1;
+}
+.bottom-subtitle-first-right{
+    padding-left: 150px;
+    color: #1a75ff;
+}
+.bottom-subtitle-row{
+    padding-top: 20px;
+}
+.bottom-subtitle-second-right{
+    padding-left: 200px;
+}
+.submit-btn{
+    height: 30px;
+    width: 255px;
+    margin-left: 20%;
+    margin-top: 20px;
+}
+/* 主页面 end */
+
+/* 成功页 */
+.success-icon{
+    padding-left: 235px;
+}
+.result-msg{
+    font-size: 25px;
+    color: #c1bec1;
+    width: 100%;
+    display: inline-block;
+    margin-left: 140px;
+    margin-top: 20px;
+}
+.result-error-msg{
+    color: #c1bec1;
+    width: 100%;
+    display: inline-block;
+    margin-left: 140px;
+    margin-top: 20px;
+}
+.bottom-box{
+    margin-top: 20px;
+}
+.bottom-result-left{
+    color: #c1bec1;
+    margin-left: 115px;
+}
+.bottom-right{
+    color: #1a75ff;
+    float: right;
+    margin-right: 175px;
+}
+.result-btn{
+    height: 30px;
+    width: 255px;
+    margin-left: 27%;
+    margin-top: 20px;
+}

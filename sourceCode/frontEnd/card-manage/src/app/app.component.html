@@ -1,0 +1,21 @@
+<main>
+    <nz-layout class="layout">
+        <nz-header>
+            <i nz-icon nzType="appstore" nzTheme="outline"></i>
+        </nz-header>
+        <nz-layout>
+            <nz-sider [nzWidth]="width">
+                <ul nz-menu [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+                    <li nz-menu-item>
+                        <div class="cardmanage" routerLink="/cardmanage">cardManage</div>
+                    </li>
+                </ul>
+            </nz-sider>
+            <nz-layout class="main-layout">
+                <nz-content class="main-content">
+                    <router-outlet></router-outlet>
+                </nz-content>
+            </nz-layout>
+        </nz-layout>
+    </nz-layout>
+</main>

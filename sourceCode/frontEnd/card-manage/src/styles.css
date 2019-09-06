@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ng-zorro-antd/src/ng-zorro-antd.min.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+/* 页面header begin */
+.ant-layout-header{
+    background: #293C55;
+    padding: 0;
+    font-family: 'TimesNewRomanPSMT';
+}
+
+/* sider begin */
+.ant-layout-sider{
+    background: #293C55;
+    min-width: 125px!important;
+}
